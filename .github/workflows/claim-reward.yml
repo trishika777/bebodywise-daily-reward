@@ -1,0 +1,32 @@
+name: Daily BeBodywise Reward
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # Runs every day at 03:00 UTC
+  workflow_dispatch:      # Allow manual trigger
+
+jobs:
+  claim-reward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm ci || npm install
+          npx playwright install --with-deps
+
+      - name: Claim daily reward
+        run: node claim-reward.js
+
+      - name: Notify on completion
+        if: always()
+        run: echo "Reward claim attempt completed"
