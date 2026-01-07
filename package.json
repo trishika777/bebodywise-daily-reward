@@ -1,0 +1,15 @@
+{
+  "name": "bebodywise-daily-reward",
+  "version": "1.0.0",
+  "description": "Automate daily reward collection on BeBodywise using Playwright",
+  "main": "claim-reward.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
+}
